@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name1">万盛指挥系统</string>
+    <string name="ceshi"></string>
+    <string name="action_draw">Draw</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_redo">Redo</string>
+    <string name="action_erase">Erase</string>
+    <string name="point">Point</string>
+    <string name="polyline">Polyline</string>
+    <string name="polygon">Polygon</string>
+    <string name="pointButtonDescription">Draw new point button</string>
+    <string name="polylineButtonDescription">Draw new polyline button</string>
+    <string name="polygonButtonDescription">Draw new polygon button</string>
+    <string name="undoButtonDescription">Undo last drawing event button</string>
+    <string name="redoButtonDescription">Redo last undone drawing event button</string>
+    <string name="clearButtonDescription">Clear current drawings button</string>
+    <string name="invite_video_chat_url">http://183.230.108.112:8087/video/findTestData.do </string>
+    <string name="image_layer_13_url">http://183.230.182.149:6080/arcgis/rest/services/wansheng13/MapServer</string>
+    <string name="image_layer_13_19_url">http://183.230.182.149:6080/arcgis/rest/services/wansheng13_19/MapServer</string>
+    <string name="get_disaster_point">http://www.cqdzjc.com:8090/meteor/findWanShengData.do</string>
+    <string name="get_disaster_info">http://www.cqdzjc.com:8090/meteor/findWanShengByIdData.do</string>
+    <string name="get_person_location">http://183.230.108.112:9077/cqapp/wansheng/getAllPersons.do</string>
+    <string name="get_person_info">http://183.230.108.112:9077/cqapp/wansheng/getOnePerson.do</string>
+    <string name="get_local_person_info">http://183.230.108.112:9077/cqapp/wansheng/getThreePerson.do</string>
+    <string name="elevation_url">http://183.230.182.149:6080/arcgis/rest/services/cq_dem/ImageServer</string>
+    <string name="qinnxiesheying_url">http://183.230.182.149:6081/arcgis/rest/services/Hosted/waimian/SceneServer/layers/0</string>
+    <string name="shiliangtu_url">http://183.230.182.149:6082/arcgis/rest/services/wansheng_xzqqie1/MapServer</string>
+    <string name="dianziditu_url">http://183.230.182.149:6080/arcgis/rest/services/wanshengmap/MapServer</string>
+    <string name="yuliang_url">http://183.230.182.149:6080/arcgis/rest/services/wansheng_dzx/MapServer</string>
+    <string name="ssyl_url">http://183.230.182.149:6080/arcgis/rest/services/wangsheng_yl1/MapServer?f=jsapi</string>
+    <string name="elevation_image_service">http://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer</string>
+    <string name="statistics_url">http://183.230.108.112:9077/cqapp/wansheng/getSomething.do</string>
+    <string name="disaster_details">http://192.168.10.193:8080/cq_app/wansheng/getMeteorDisMessageDetail.do</string>
+    <string name="ceshi1">***</string>
+    <string name="jinqiao_qxsy_url">http://183.230.182.149:6081/arcgis/rest/services/Hosted/jingqiao_spk1/SceneServer/layers/0</string>
+    <string name="shilin_qxsy_url">http://183.230.182.149:6081/arcgis/rest/services/Hosted/wanshengshilin_spk1/SceneServer/layers/0</string>
+    <string name="shilin_elevation_url">http://183.230.182.149:6080/arcgis/rest/services/ws_shilindsm/ImageServer</string>
+    <string name="jinqiao_elevation_url">http://183.230.182.149:6080/arcgis/rest/services/ws_jingqiaodem2/ImageServer</string>
+    <string name="chongqing_url">http://183.230.182.149:6080/arcgis/rest/services/chongqing_map/MapServer</string>
+
+
+    <string name="base_http">http://183.230.182.149:18081/springmvc/</string>
+    <string name="login">http://183.230.182.149:18081/springmvc/login/login/cq_guotu/ycmcwin2000qwe</string>
+
+    <string name="disaster_url">tabDisastersInfo/disastersByAreaCode/</string>
+    <string name="disaster_url_state">tabDisastersInfo/findDisasterByState/</string>
+    <string name="four_person_info">disasters/fourPersonInfoById/</string>
+    <!--基本信息-->
+    <string name="selectByDisNo">tabDisastersInfo/selectByDisNo/</string>
+    <!--360全景图-->
+    <string name="selectVAImgByDisNo">tabDisastersInfo/selectVAImgByDisNo/</string>
+    <!--加载图片-->
+    <string name="selectFeaPicById">tabDisastersInfo/selectFeaPicById/</string>
+    <!--防灾明白卡-->
+    <string name="selectDisCardByDisNo">tabDisastersInfo/selectDisCardByDisNo/</string>
+    <!--避险明白卡-->
+    <string name="selectHeCardByDisNo">tabDisastersInfo/selectHeCardByDisNo/</string>
+    <!--防灾预案-->
+    <string name="selectPnInfoByDisNo">tabDisastersInfo/selectPnInfoByDisNo/</string>
+
+
+    <string name="xingzheng_image_url">http://183.230.182.149:6082/arcgis/rest/services/wansheng_ceshi/MapServer</string>
+
+    <!--群测群防-->
+    <string name="qcqf_man">/humaninfo/humans/</string>
+    <string name="zs_man">/areaprofessor/areaprofessor/</string>
+    <string name="fzr_man">/areaadmin/findAllAreaAdmin/</string>
+    <string name="dh_man">/dihuanzhanman/finddihuanzhanById/</string>
+
+    <string name="qcqf_man_id">/humaninfo/human/</string>
+    <string name="zs_man_id">/areaprofessor/professorbyid/</string>
+    <string name="fzr_man_id">/areaadmin/findAreaAdminById/</string>
+    <string name="dh_man_id">/dihuanzhanman/finddihuanzhanById/</string>
+
+    <!--所有设备-->
+    <string name="all_devices">device/devices/0/</string>
+    <!--单个设备 id查询-->
+    <string name="single_devices">device/singleDevice/1/</string>
+
+    <string name="kuangxuan">/kuangxuan/info/</string>
+    <string name="HelloTitle">"视频通话"</string>
+    <string name="endCall1">结束通话</string>
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO</string>
+</resources>
