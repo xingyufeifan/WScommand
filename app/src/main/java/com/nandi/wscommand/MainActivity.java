@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -1481,7 +1482,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         TextView tvCheckToDetail = (TextView) view.findViewById(R.id.tv_check_to_detail);
-        RadioGroup rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
+        final RadioGroup rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -1797,7 +1798,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setDialogViewDatas(String type, final int id) {
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_disasterinfo, null);
         final LinearLayout llBaseInfo = (LinearLayout) view.findViewById(R.id.ll_base_info);
+        final View detailInfo = view.findViewById(R.id.detail_info);
         rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
+        final RadioButton rbtnBaseInfo = (RadioButton) view.findViewById(R.id.rbtn_base_info);
+        final RadioButton rbtnChecDetail = (RadioButton) view.findViewById(R.id.rbtn_check_detail);
         final List<String> mList = new ArrayList<>();
         mList.add(R.mipmap.t5001101000840101_1 + "");
         mList.add(R.mipmap.t5001101000840101_2 + "");
@@ -1807,16 +1811,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbtn_base_info:
+                        detailInfo.setVisibility(View.GONE);
                         llBaseInfo.setVisibility(View.VISIBLE);
+                        rbtnBaseInfo.setTextColor(Color.WHITE);
+                        rbtnChecDetail.setTextColor(getResources().getColor(R.color.title_text_color));
                         break;
                     case R.id.rbtn_check_detail:
-                        llBaseInfo.setVisibility(View.VISIBLE);
-                        showDialogDetails(id + "");
+                        llBaseInfo.setVisibility(View.GONE);
+                        detailInfo.setVisibility(View.VISIBLE);
+                        rbtnBaseInfo.setTextColor(getResources().getColor(R.color.title_text_color));
+                        rbtnChecDetail.setTextColor(Color.WHITE);
                         //setOkhttpDetails(id+"",getResources().getString(R.string.four_person_info),1);
                         break;
                 }
             }
 
+        });
+
+        llSwitchInfo = (LinearLayout) view.findViewById(R.id.ll_switch_info);
+        MyRadioGroup myrg = (MyRadioGroup) view.findViewById(R.id.myrg);
+        myrg.setOnCheckedChangeListener(new MyRadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(MyRadioGroup group, int checkedId) {
+                llSwitchInfo.removeAllViews();
+                switch (checkedId) {
+                    case R.id.rb_detail_1_1:
+                        setOkhttpDetails(String.valueOf(id), getResources().getString(R.string.four_person_info), 1);
+                        break;
+                    case R.id.rb_detail_1_2:
+                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectByDisNo), 2);
+                        break;
+                    case R.id.rb_detail_1_3:
+                        setOkhttpDetails(String.valueOf(id), getResources().getString(R.string.selectFeaPicById), 3);
+                        break;
+                    case R.id.rb_detail_1_4:
+                        YanShi(3000);
+                        llSwitchInfo.addView(addTextView("暂无视频资源"));
+                        break;
+                    case R.id.rb_detail_2_1:
+                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectDisCardByDisNo), 5);
+                        break;
+                    case R.id.rb_detail_2_2:
+                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectHeCardByDisNo), 6);
+                        break;
+                    case R.id.rb_detail_2_3:
+                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectPnInfoByDisNo), 7);
+                        break;
+                    case R.id.rb_detail_2_4:
+                        String info1 = "告警时间：2015-04-07\n" + "\n"
+                                + "告警缘由：隐患点有异常\n" + "\n"
+                                + "处置时间：2015-04-08\n" + "\n"
+                                + "是否处置：是\n" + "\n"
+                                + "处置结果：已提醒并疏散应还的周围群众并做异常报告上报\n" + "\n";
+                        llSwitchInfo.addView(addTextView(info1));
+                        break;
+                    case R.id.rb_detail_3_1:
+                        YanShi(3000);
+                        llSwitchInfo.addView(addTextView("暂无全景图片资源"));
+                        break;
+                    case R.id.rb_detail_3_2:
+                        String info2 = "告警时间:2015-04-07\n" + "\n"
+                                + "本次预警方式：呼喊，电话\n" + "\n"
+                                + "本次灾害等级:小型\n" + "\n"
+                                + "预定疏散路线:垂直主滑坡方向，沿滑坡两侧撤离\n" + "\n"
+                                + "处置意见：加强巡查工作，做好监测记录及时向上级反映\n" + "\n"
+                                + "是否处置：是\n" + "\n";
+                        llSwitchInfo.addView(addTextView(info2));
+                        break;
+                    case R.id.rb_detail_3_3:
+                        String info3 = "危岩评估记录\n" + "\n"
+                                + "    2014年5月4日危岩发生垮塌，垮塌方量约8m3，造成道路堵塞和民房破坏。 该危岩带直接威胁下方居民约13户55人生命财产安全，在校师生约165人， 和乡镇唯一进出道路的畅通，路过此地的车流量及人员较多，每天数千人（次）车辆。 该危岩带极大制约了村（乡）的建设发展规划，影响着附近居民的正常生产、生活。 为了彻底消除该地段危岩带的安全隐患，国土资源和房屋管理局拟将该处危岩带申报区级财政地质灾害防治资金， 特于2015年3月委托重庆市地质灾害防治工程勘查设计院对该危岩带进行应急抢险勘查。\n" + "\n"
+                                + "    经重庆市地质灾害防治工程勘查设计院对该危岩进行勘察，根据危岩的稳定性分析和危害性预测结果， 对该危岩进行及时合理的治理是必要的，会带来较好的经济效益和社会效益。可避免和减轻其对环境与生态的不良危害， 美化旅游环境，人们得以一个安全、优美、舒适的学习、生活场所；勘查区危岩的治理，能最大限度的开发利用土地资源， 对地方经济发展无疑起到促进作用。\n" + "\n"
+                                + "    (1)隐患点地理位置较重要，是进出的重要通道、地质灾害活动频繁，危害性较大，应尽快开展治理工程， 并加强监测工作。隐患点的存在直接威胁下方居民约13户55人生命财产安全，在校师生约165人。\n" + "\n";
+                        llSwitchInfo.addView(addTextView(info3));
+                        break;
+                }
+            }
         });
 
         String mDisName = "";
@@ -2017,87 +2087,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
     }
-
-
-    /**
-     * 灾害点详细信息
-     */
-    private void showDialogDetails(final String id) {
-
-        final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_disaster_detail_info, null);
-        final AlertDialog ss = new AlertDialog.Builder(MainActivity.this).setView(view).create();
-        llSwitchInfo = (LinearLayout) view.findViewById(R.id.ll_switch_info);
-        MyRadioGroup myrg = (MyRadioGroup) view.findViewById(R.id.myrg);
-        myrg.setOnCheckedChangeListener(new MyRadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(MyRadioGroup group, int checkedId) {
-                llSwitchInfo.removeAllViews();
-                switch (checkedId) {
-                    case R.id.rb_detail_1_1:
-                        setOkhttpDetails(id, getResources().getString(R.string.four_person_info), 1);
-                        break;
-                    case R.id.rb_detail_1_2:
-                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectByDisNo), 2);
-                        break;
-                    case R.id.rb_detail_1_3:
-                        setOkhttpDetails(id, getResources().getString(R.string.selectFeaPicById), 3);
-                        break;
-                    case R.id.rb_detail_1_4:
-                        YanShi(3000);
-                        llSwitchInfo.addView(addTextView("暂无视频资源"));
-                        break;
-                    case R.id.rb_detail_2_1:
-                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectDisCardByDisNo), 5);
-                        break;
-                    case R.id.rb_detail_2_2:
-                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectHeCardByDisNo), 6);
-                        break;
-                    case R.id.rb_detail_2_3:
-                        setOkhttpDetails(maps.get(id), getResources().getString(R.string.selectPnInfoByDisNo), 7);
-                        break;
-                    case R.id.rb_detail_2_4:
-                        String info1 = "告警时间：2015-04-07\n" + "\n"
-                                + "告警缘由：隐患点有异常\n" + "\n"
-                                + "处置时间：2015-04-08\n" + "\n"
-                                + "是否处置：是\n" + "\n"
-                                + "处置结果：已提醒并疏散应还的周围群众并做异常报告上报\n" + "\n";
-                        llSwitchInfo.addView(addTextView(info1));
-                        break;
-                    case R.id.rb_detail_3_1:
-                        YanShi(3000);
-                        llSwitchInfo.addView(addTextView("暂无全景图片资源"));
-                        break;
-                    case R.id.rb_detail_3_2:
-                        String info2 = "告警时间:2015-04-07\n" + "\n"
-                                + "本次预警方式：呼喊，电话\n" + "\n"
-                                + "本次灾害等级:小型\n" + "\n"
-                                + "预定疏散路线:垂直主滑坡方向，沿滑坡两侧撤离\n" + "\n"
-                                + "处置意见：加强巡查工作，做好监测记录及时向上级反映\n" + "\n"
-                                + "是否处置：是\n" + "\n";
-                        llSwitchInfo.addView(addTextView(info2));
-                        break;
-                    case R.id.rb_detail_3_3:
-                        String info3 = "危岩评估记录\n" + "\n"
-                                + "    2014年5月4日危岩发生垮塌，垮塌方量约8m3，造成道路堵塞和民房破坏。 该危岩带直接威胁下方居民约13户55人生命财产安全，在校师生约165人， 和乡镇唯一进出道路的畅通，路过此地的车流量及人员较多，每天数千人（次）车辆。 该危岩带极大制约了村（乡）的建设发展规划，影响着附近居民的正常生产、生活。 为了彻底消除该地段危岩带的安全隐患，国土资源和房屋管理局拟将该处危岩带申报区级财政地质灾害防治资金， 特于2015年3月委托重庆市地质灾害防治工程勘查设计院对该危岩带进行应急抢险勘查。\n" + "\n"
-                                + "    经重庆市地质灾害防治工程勘查设计院对该危岩进行勘察，根据危岩的稳定性分析和危害性预测结果， 对该危岩进行及时合理的治理是必要的，会带来较好的经济效益和社会效益。可避免和减轻其对环境与生态的不良危害， 美化旅游环境，人们得以一个安全、优美、舒适的学习、生活场所；勘查区危岩的治理，能最大限度的开发利用土地资源， 对地方经济发展无疑起到促进作用。\n" + "\n"
-                                + "    (1)隐患点地理位置较重要，是进出的重要通道、地质灾害活动频繁，危害性较大，应尽快开展治理工程， 并加强监测工作。隐患点的存在直接威胁下方居民约13户55人生命财产安全，在校师生约165人。\n" + "\n";
-                        llSwitchInfo.addView(addTextView(info3));
-                        break;
-                }
-            }
-        });
-
-        ss.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                rg.check(R.id.rbtn_base_info);
-            }
-        });
-
-        ss.show();
-
-    }
-
     /**
      * 延时显示WaitingDialog
      *

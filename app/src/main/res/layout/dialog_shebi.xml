@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:layout_height="300dp"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/title_bg_color">
 
         <RadioGroup
             android:id="@+id/rg_disaster_info"
@@ -17,44 +16,41 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:checked="true"
                 android:id="@+id/rbtn_check_1"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:layout_margin="10dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
                 android:text="监测点信息"
-                android:textSize="15sp"
-                android:background="@drawable/radiobtn_selector"
-                android:button="@null" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rbtn_check_2"
-                android:textSize="15sp"
-                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:button="@null"
                 android:gravity="center"
                 android:text="项目信息"
-                android:layout_margin="10dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:background="@drawable/radiobtn_selector"
-                android:button="@null" />
+                android:textColor="@color/title_text_color"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rbtn_check_3"
-                android:textSize="15sp"
-                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:button="@null"
                 android:gravity="center"
                 android:text="现场图片"
-                android:layout_margin="10dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:background="@drawable/radiobtn_selector"
-                android:button="@null" />
+                android:textColor="@color/title_text_color"
+                android:textSize="20sp" />
 
         </RadioGroup>
 
@@ -85,19 +81,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="监测点名称："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_monitor_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="YY2208"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -106,19 +107,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="监测类型："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_static_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="地表位移(GPS)"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -128,19 +134,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="设备名称："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_device_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="7721"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text_edit" />
@@ -149,19 +160,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="硬件版本号："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_hardware_version"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -171,19 +187,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="固态版本号："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_soft_version"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -192,19 +213,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="注册时间："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_register_date"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -213,20 +239,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="设备状态："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_state"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="正常工作"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -236,32 +266,40 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="数据显示："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
-                    <TextView
-                        android:id="@+id/tv_check_to_detail"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_ll_background"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="查看详情"
-                        android:textColor="#FF7F00"
-                        android:textSize="@dimen/relic_text" />
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_check_to_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/textview_background"
+                            android:text="查看详情"
+                            android:textColor="#FF7F00"
+                            android:textSize="@dimen/relic_text" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/ll_shebei_info_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -269,24 +307,30 @@
                 android:orientation="vertical"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
-                android:paddingTop="15dp">
+                android:paddingTop="15dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="项目名称："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_project_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -295,19 +339,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="项目开始时间："
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="开始时间："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_start_date"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="@string/ceshi1"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -317,19 +366,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="项目地点："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_project_add"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="@string/ceshi1"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text_edit" />
@@ -338,19 +392,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="经度："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_longitude"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -360,19 +419,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="纬度："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_latitude"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -381,19 +445,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="项目负责人："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
                         android:id="@+id/tv_project_man"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
@@ -402,19 +471,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:text="联系方式："
                         android:textColor="@color/relic_text_color"
                         android:textSize="@dimen/relic_text" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:padding="3dp"
+                        android:paddingLeft="10dp"
                         android:text="暂无数据"
                         android:textColor="@color/relic_text_edit_color"
                         android:textSize="@dimen/relic_text" />
