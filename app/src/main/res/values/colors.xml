@@ -3,12 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorgray">#D6D6D6</color>
-    <color name="colorblue">#881E90FF</color>
+    <color name="colorgray">#999999</color>
+    <color name="colorblue">#0c89f4</color>
     <color name="colorblue2">#ffC6E2FF</color>
     <color name="colorblack">#000000</color>
     <color name="colorwhite">#ffffff</color>
-
+    <color name="colorlocation">#112945</color>
+    <color name="colorsearch">#00f3f3</color>
 
     <color name="color_circular_1">#FF3030</color>
     <color name="color_circular_2">#FF7F00</color>
@@ -50,10 +51,4 @@
     <color name="trans_white">#20ffffff</color>
     <color name="trans">#00000000</color>
     <color name="blue">#cc33b5e5</color>
-    <color name="title_text_color">#00f3f3</color>
-    <color name="title_bg_color">#112945</color>
-    <color name="content_bg_color">#597db4</color>
-    <color name="alpha_content_bg_color">#55597db4</color>
-    <color name="half_white">#00ffffff</color>
-    <color name="kidbgColor">#4c4c4c</color>
 </resources>
