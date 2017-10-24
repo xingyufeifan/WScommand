@@ -42,22 +42,16 @@ public class RcSearchPlaceAdapter extends RecyclerView.Adapter<RcSearchPlaceAdap
 
     @Override
     public void onBindViewHolder(ViewHolderA holder, int position) {
-        if(position==0){
+        holder.tv_1.setText(mSearchPlace.getData().get(position).getName());
+        holder.tv_2.setText(mSearchPlace.getData().get(position).getType_name());
+        holder.tv_3.setText(mSearchPlace.getData().get(position).getNumber());
 
-            holder.tv_1.setText("名称");
-            holder.tv_2.setText("类型");
-            holder.tv_3.setText("编号");
-        }else{
-            holder.tv_1.setText(mSearchPlace.getData().get(position-1).getName());
-            holder.tv_2.setText(mSearchPlace.getData().get(position-1).getType_name());
-            holder.tv_3.setText(mSearchPlace.getData().get(position-1).getNumber());
-        }
     }
 
     @Override
     public int getItemCount() {
         //生成的item的数量
-        return mSearchPlace.getData().size()+1;
+        return mSearchPlace.getData().size();
     }
 
     //Item的ViewHolder以及item内部布局控件的id绑定

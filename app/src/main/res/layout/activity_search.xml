@@ -1,83 +1,154 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-
+    android:background="@color/colorlocation"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_123"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="160dp"
             android:layout_height="44dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:background="@drawable/shape_search_spinner">
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_search_spinner"
+            android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/spinner1"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                 />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="140dp"
             android:layout_height="44dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:background="@drawable/shape_search_spinner">
-
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_search_spinner"
+            android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/spinner2"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <EditText
-            android:textSize="15sp"
-            android:paddingStart="4dp"
             android:id="@+id/etSearch"
             android:layout_width="400dp"
             android:layout_height="44dp"
-            android:layout_margin="5dp"
-            android:hint="输入关键字"
             android:background="@drawable/shape_search_btn"
-            android:paddingLeft="2dp" />
+            android:hint="输入关键字"
+            android:paddingLeft="10dp"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btnSearch"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:background="@mipmap/ic_search" />
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/ic_search" />
     </LinearLayout>
 
+    <!-- 表格标题栏 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#d3d3d3"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="名称"
+            android:textSize="20sp"
+            android:textColor="@color/title_text_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="类型"
+            android:textSize="20sp"
+            android:textColor="@color/title_text_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="编号"
+            android:textSize="20sp"
+            android:textColor="@color/title_text_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="操作"
+            android:textSize="20sp"
+            android:textColor="@color/title_text_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#d3d3d3"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#d3d3d3"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/date_show"
-        android:layout_below="@+id/ll_123"
         android:layout_width="800dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_123">
 
     </android.support.v7.widget.RecyclerView>
 
