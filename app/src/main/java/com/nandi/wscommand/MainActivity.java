@@ -404,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssYLLayer = new ArcGISMapImageLayer(getResources().getString(R.string.ssyl_url));
         elevationSource = new ArcGISTiledElevationSource(
                 getResources().getString(R.string.elevation_image_service));
-        table = new ServiceFeatureTable(getResources().getString(R.string.xingzheng_image_url) + "/1");
+        table = new ServiceFeatureTable(getResources().getString(R.string.xingzheng_image_url) + "/2");
         xzFeatureLayer = new FeatureLayer(table);
         xingZhengLayer = new ArcGISMapImageLayer(getResources().getString(R.string.xingzheng_image_url));
         for (int i = 1; i <= 8; i++) {
@@ -1105,10 +1105,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (i == 1) {//雨量信息
             clearAllGraphics();
             setDisasterLegend(R.layout.activity_rainfall_legend, 1);
-            if (!layers.contains(vectorLayer)) {
+            if (!layers.contains(xingZhengLayer)) {
                 layers.clear();
                 elevationSources.clear();
-                layers.add(vectorLayer);
+                layers.add(xingZhengLayer);
                 Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
                 sceneView.setViewpointCamera(camera);
             }
