@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="驻守地质人员"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:gravity="center"
         android:textColor="@color/title_text_color"
         android:background="@color/title_bg_color"/>
