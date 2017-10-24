@@ -3,7 +3,6 @@ package com.nandi.wscommand;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,7 +19,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,7 +30,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
@@ -81,7 +78,6 @@ import com.esri.arcgisruntime.mapping.view.DefaultSceneViewOnTouchListener;
 import com.esri.arcgisruntime.mapping.view.Graphic;
 import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.mapping.view.IdentifyGraphicsOverlayResult;
-import com.esri.arcgisruntime.mapping.view.LocationToScreenResult;
 import com.esri.arcgisruntime.mapping.view.SceneView;
 import com.esri.arcgisruntime.mapping.view.ViewpointChangedEvent;
 import com.esri.arcgisruntime.mapping.view.ViewpointChangedListener;
@@ -135,6 +131,7 @@ import com.nandi.wscommand.ui.CircleBar;
 import com.nandi.wscommand.ui.MyRadioGroup;
 import com.nandi.wscommand.ui.WaitingDialog;
 import com.nandi.wscommand.utils.DateTimePickUtil;
+import com.nandi.wscommand.utils.NoDoubleClickListener;
 import com.nandi.wscommand.utils.PermissionUtils;
 import com.nandi.wscommand.utils.SketchGraphicsOverlayEventListener;
 import com.nandi.wscommand.videocall.helloanychat.VideoCallActivity;
@@ -147,6 +144,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -165,24 +163,16 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     @BindView(R.id.pie_chart)
     CircleBar pieChart;
-    @BindView(R.id.iv_search_main)
-    ImageView ivSearchMain;
 
-    @BindView(R.id.pointButton)
-    ImageButton mPointButton;
     @BindView(R.id.polylineButton)
     ImageButton mPolylineButton;
     @BindView(R.id.polygonButton)
     ImageButton mPolygonButton;
-    @BindView(R.id.undoButton)
-    ImageButton mUndoButton;
-    @BindView(R.id.redoButton)
-    ImageButton mRedoButton;
     @BindView(R.id.clearButton)
     ImageButton mClearButton;
     @BindView(R.id.tv_measure_result)
@@ -196,8 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.tv_equipment_number)
     TextView tvEquipmentNumber;
-    @BindView(R.id.iv_location)
-    ImageView ivLocation;
     @BindView(R.id.tv_zhushou_number)
     TextView tvZhushouNumber;
     @BindView(R.id.tv_jiance_number)
@@ -210,10 +198,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvQcqfNumber;
     @BindView(R.id.btn_util_detail)
     Button btnUtilDetail;
-    @BindView(R.id.iv_enlarge)
-    ImageButton ivEnlarge;
-    @BindView(R.id.iv_narrow)
-    ImageButton ivNarrow;
     @BindView(R.id.tv_scale)
     TextView tvScale;
     @BindView(R.id.el_manager)
@@ -228,12 +212,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView ivDataBack;
     @BindView(R.id.ll_data)
     LinearLayout llData;
-    @BindView(R.id.iv_luopan)
-    ImageView ivLuopan;
     @BindView(R.id.map_control)
     LinearLayout mapControl;
     @BindView(R.id.rl_main)
     RelativeLayout rlMain;
+    @BindView(R.id.ll_enlarge)
+    LinearLayout llEnlarge;
+    @BindView(R.id.ll_compass)
+    LinearLayout llCompass;
+    @BindView(R.id.ll_narrow)
+    LinearLayout llNarrow;
+    @BindView(R.id.ll_location)
+    LinearLayout llLocation;
+    @BindView(R.id.ll_search)
+    LinearLayout llSearch;
 
     private boolean llAreaState = false;
     private boolean llDataState = false;
@@ -384,6 +376,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     });
     private ExpandableAdapter elAdapter;
+    private int tag = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -449,10 +442,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         elevationSources = scene.getBaseSurface().getElevationSources();
         scene.setBasemap(Basemap.createImagery());
         sceneView.setScene(scene);
-        mUndoButton.setClickable(false);
-        mUndoButton.setEnabled(false);
-        mRedoButton.setClickable(false);
-        mRedoButton.setEnabled(false);
         mClearButton.setClickable(false);
         mClearButton.setEnabled(false);
         setAdapter();
@@ -580,7 +569,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!v.isSelected()) {
             v.setSelected(true);
             setDrawingMode(DrawingMode.POLYLINE);
-            mPointButton.setEnabled(false);
             mPolygonButton.setEnabled(false);
         } else {
             setDrawingMode(DrawingMode.NONE);
@@ -592,7 +580,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             clearAllGraphics();
             v.setSelected(true);
             setDrawingMode(DrawingMode.POLYGON);
-            mPointButton.setEnabled(false);
             mPolylineButton.setEnabled(false);
         } else {
             setDrawingMode(DrawingMode.NONE);
@@ -616,15 +603,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onUndoStateChanged(boolean undoEnabled) {
             // Set the undo button's enabled/disabled state based on the event boolean
-            mUndoButton.setEnabled(undoEnabled);
-            mUndoButton.setClickable(undoEnabled);
         }
 
         @Override
         public void onRedoStateChanged(boolean redoEnabled) {
             // Set the redo button's enabled/disabled state based on the event boolean
-            mRedoButton.setEnabled(redoEnabled);
-            mRedoButton.setClickable(redoEnabled);
         }
 
         @Override
@@ -637,12 +620,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onDrawingFinished() {
             // Reset the selected state of the drawing buttons when a drawing is finished
-            mPointButton.setSelected(false);
             mPolylineButton.setSelected(false);
             mPolygonButton.setSelected(false);
             mPolygonButton.setEnabled(true);
             mPolylineButton.setEnabled(true);
-            mPointButton.setEnabled(true);
         }
     }
 
@@ -679,15 +660,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setListeners() {
-        ivEnlarge.setOnClickListener(this);
-        ivNarrow.setOnClickListener(this);
-        btnUtilDetail.setOnClickListener(this);
-        ivLocation.setOnClickListener(this);
-        ivSearchMain.setOnClickListener(this);
-        btnUtil.setOnClickListener(this);
-        ivLuopan.setOnClickListener(this);
-        ivAreaBack.setOnClickListener(this);
-        ivDataBack.setOnClickListener(this);
+        llEnlarge.setOnClickListener(listener);
+        llNarrow.setOnClickListener(listener);
+        llCompass.setOnClickListener(listener);
+        btnUtilDetail.setOnClickListener(listener);
+        btnUtil.setOnClickListener(listener);
+        ivAreaBack.setOnClickListener(listener);
+        ivDataBack.setOnClickListener(listener);
+        llLocation.setOnClickListener(listener);
+        llSearch.setOnClickListener(listener);
         elManager.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
@@ -709,7 +690,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         elManager.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int i) {
+                if (tag != i) {
+                    elManager.collapseGroup(tag);
+                }
                 groupExpand(i);
+                tag = i;
             }
         });
         sceneView.setOnTouchListener(new DefaultSceneViewOnTouchListener(sceneView) {
@@ -727,10 +712,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Geometry geometry = graphic.get(0).getGeometry();
                                 if (geometry instanceof Polyline) {
                                     double length = GeometryEngine.lengthGeodetic(geometry, new LinearUnit(LinearUnitId.KILOMETERS), GeodeticCurveType.GREAT_ELLIPTIC);
-                                    tvMeasureResult.setText("长度为:" + length + "千米");
+                                    BigDecimal b = new BigDecimal(length);
+                                    double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                                    tvMeasureResult.setText("长度为:" + f1 + "千米");
                                 } else if (geometry instanceof Polygon) {
                                     detailarea = Math.abs(GeometryEngine.areaGeodetic(geometry, new AreaUnit(AreaUnitId.SQUARE_KILOMETERS), GeodeticCurveType.GREAT_ELLIPTIC));
-                                    //tvMeasureResult.setText("面积为:" + area + "平方千米");
+                                    BigDecimal b = new BigDecimal(detailarea);
+                                    double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                                    tvMeasureResult.setText("长度为:" + f1 + "千米");
+                                    tvMeasureResult.setText("面积为:" + f1 + "平方千米");
                                     PolygonBuilder builder = new PolygonBuilder((Polygon) geometry);
                                     PartCollection parts = builder.getParts();
                                     Iterator<Point> iterator = parts.getPartsAsPoints().iterator();
@@ -822,7 +812,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
-                if (!mPolylineButton.isSelected() && !mPolygonButton.isSelected() && !mPointButton.isSelected()) {
+                if (!mPolylineButton.isSelected() && !mPolygonButton.isSelected()) {
 
                     ListenableFuture<Point> pointListenableFuture = sceneView.screenToLocationAsync(screenPoint);
                     if (layers.contains(xingZhengLayer)) {
@@ -960,79 +950,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public boolean onScroll(MotionEvent from, MotionEvent to, float distanceX, float distanceY) {
-                if (llUtil.getVisibility() == View.VISIBLE) {
-                    boolean callSuper = true;
-                    if (mCurrentPoint != null) {
-                        LocationToScreenResult locationToScreenResult = sceneView.locationToScreen((Point) mCurrentPoint.getGeometry());
-                        android.graphics.Point currentPoint = locationToScreenResult.getScreenPoint();
-                        android.graphics.Point fromPoint = new android.graphics.Point((int) from.getX(), (int) from.getY());
-                        int dx = currentPoint.x - fromPoint.x;
-                        int dy = currentPoint.y - fromPoint.y;
-                        int distance = (int) Math.sqrt((dx * dx) + (dy * dy));
-                        if (distance < 20) {
-                            callSuper = false;
-                            android.graphics.Point toPoint = new android.graphics.Point((int) to.getX(), (int) to.getY());
-                            Point oldGeometry = (Point) mCurrentPoint.getGeometry();
-                            Point oldPointCopy = new Point(oldGeometry.getX(), oldGeometry.getY(), sceneView.getSpatialReference());
-                            Point newGeometry = null;
-                            try {
-                                newGeometry = sceneView.screenToLocationAsync(toPoint).get();
-                            } catch (InterruptedException | ExecutionException e) {
-                                e.printStackTrace();
-                            }
-                            if (!mVertexDragStarted) {
-                                if (mDrawingMode == DrawingMode.POINT) {
-                                    queueUndoRedoItem(mUndoElementStack, new UndoRedoItem(UndoRedoItem.Event.MOVE_POINT, oldPointCopy));
-                                } else {
-                                    queueUndoRedoItem(mUndoElementStack, new UndoRedoItem(UndoRedoItem.Event.MOVE_POLYLINE_POINT,
-                                            new UndoRedoItem.MovePolylinePointElement(mCurrentPoint, oldPointCopy, mIsMidpointSelected)));
-                                }
-                            }
-                            if (mDrawingMode == DrawingMode.POLYLINE || mDrawingMode == DrawingMode.POLYGON) {
-                                int graphicIndex = mGraphics.indexOf(mCurrentPoint);
-                                int pointIndex;
-                                if (mIsMidpointSelected && !mVertexDragStarted) {
-                                    splitMidpoint(newGeometry);
-                                } else {
-                                    pointIndex = mCurrentPointCollection.indexOf(mCurrentPoint.getGeometry());
-                                    mCurrentPointCollection.set(pointIndex, newGeometry);
-                                    Graphic preMidpoint = (pointIndex == 0) ? null : mGraphics.get(graphicIndex - 1);
-                                    if (preMidpoint != null) {
-                                        Point preMidpointGeometry = getMidpoint(mCurrentPointCollection.get(pointIndex - 1), newGeometry);
-                                        preMidpoint.setGeometry(preMidpointGeometry);
-                                    }
-                                    Graphic postMidpoint = (pointIndex == mCurrentPointCollection.size() - 1) ? null : mGraphics.get(graphicIndex + 1);
-                                    if (postMidpoint != null) {
-                                        Point postMidpointGeometry = getMidpoint(newGeometry, mCurrentPointCollection.get(pointIndex + 1));
-                                        postMidpoint.setGeometry(postMidpointGeometry);
-                                    }
-                                    if (mDrawingMode == DrawingMode.POLYGON) {
-                                        if (pointIndex == 0 || pointIndex == mCurrentPointCollection.size() - 2) {
-                                            if (pointIndex == 0) {
-                                                mCurrentPointCollection.set(mCurrentPointCollection.size() - 1, newGeometry);
-                                            }
-                                            updatePolygonMidpoint();
-                                        }
-                                        mCurrentPolygon.setGeometry(new Polygon(mCurrentPointCollection));
-                                    }
-                                    mCurrentLine.setGeometry(new Polyline(mCurrentPointCollection));
-                                }
-                            }
-                            mVertexDragStarted = true;
-                            mCurrentPoint.setGeometry(newGeometry);
-                            clearStack(mRedoElementStack);
-                        }
-                    }
-                    if (callSuper) {
-                        super.onScroll(from, to, distanceX, distanceY);
-                    }
-                }
-                return super.onScroll(from, to, distanceX, distanceY);
-            }
-
-
-            @Override
             public boolean onSingleTapUp(MotionEvent motionEvent) {
                 if (llUtil.getVisibility() == View.VISIBLE) {
                     mVertexDragStarted = false;
@@ -1096,23 +1013,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (view != null) {
                 rlMain.removeView(view);
             }
-            if (!layers.contains(xingZhengLayer)) {
-                layers.clear();
-                elevationSources.clear();
-                layers.add(xingZhengLayer);
-                Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
-                sceneView.setViewpointCamera(camera);
-            }
+            layers.clear();
+            elevationSources.clear();
+            layers.add(xingZhengLayer);
+            Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
+            sceneView.setViewpointCamera(camera);
         } else if (i == 1) {//雨量信息
             clearAllGraphics();
             setDisasterLegend(R.layout.activity_rainfall_legend, 1);
-            if (!layers.contains(xingZhengLayer)) {
-                layers.clear();
-                elevationSources.clear();
-                layers.add(xingZhengLayer);
-                Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
-                sceneView.setViewpointCamera(camera);
-            }
+            layers.clear();
+            elevationSources.clear();
+            layers.add(xingZhengLayer);
+            Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
+            sceneView.setViewpointCamera(camera);
         } else if (i == 2) {//隐患点信息
             clearAllGraphics();
             setDisasterLegend(R.layout.activity_disaster_legend, 2);
@@ -1186,7 +1099,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     layers.remove(dengZXLayer);
                 }
                 if (!layers.contains(ssYLLayer)) {
-
                     layers.add(ssYLLayer);
                 }
             } else if (i1 == 1) {
@@ -2434,63 +2346,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return view;
     }
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_enlarge:
-                setEnlarge();
-                break;
-            case R.id.iv_narrow:
-                setNarrow();
-                break;
-            case R.id.btn_util_detail:
-                setOkhttpKuangxuan(detailhttp, detailarea);
-                break;
-            case R.id.iv_location:
-                if (personLocationGraphics.size() > 0) {
-                    personLocationGraphics.clear();
-                } else {
-                    personLocation();
-                    if (!layers.contains(chongqingLayer)) {
-                        layers.clear();
-                        elevationSources.clear();
-                        layers.add(chongqingLayer);
-                        clearAllGraphics();
+    NoDoubleClickListener listener=new NoDoubleClickListener() {
+        @Override
+        public void onNoDoubleClick(View view) {
+            switch (view.getId()){
+                case R.id.ll_enlarge:
+                    setEnlarge();
+                    break;
+                case R.id.ll_narrow:
+                    setNarrow();
+                    break;
+                case R.id.btn_util_detail:
+                    setOkhttpKuangxuan(detailhttp, detailarea);
+                    break;
+                case R.id.ll_location:
+                    if (personLocationGraphics.size() > 0) {
+                        personLocationGraphics.clear();
+                    } else {
+                        personLocation();
+                        if (!layers.contains(chongqingLayer)) {
+                            layers.clear();
+                            elevationSources.clear();
+                            layers.add(chongqingLayer);
+                            clearAllGraphics();
+                        }
                     }
-                }
-                break;
-            case R.id.iv_search_main:
-                if (searchPersonGraphics.size() > 0 || searchPlaceGraphics.size() > 0) {
-                    searchPlaceGraphics.clear();
-                    searchPersonGraphics.clear();
-                } else {
-                    if (!layers.contains(lowImageLayer)) {
-                        layers.clear();
-                        elevationSources.clear();
-                        layers.add(lowImageLayer);
-                        layers.add(highImageLayer);
-                        elevationSources.add(elevationSource);
-                        Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
-                        sceneView.setViewpointCameraAsync(camera, 2);
+                    break;
+                case R.id.ll_search:
+                    if (searchPersonGraphics.size() > 0 || searchPlaceGraphics.size() > 0) {
+                        searchPlaceGraphics.clear();
+                        searchPersonGraphics.clear();
+                    } else {
+                        if (!layers.contains(lowImageLayer)) {
+                            layers.clear();
+                            elevationSources.clear();
+                            layers.add(lowImageLayer);
+                            layers.add(highImageLayer);
+                            elevationSources.add(elevationSource);
+                            Camera camera = new Camera(28.769167, 106.910399, 50000.0, 0, 20, 0.0);
+                            sceneView.setViewpointCameraAsync(camera, 2);
+                        }
+                        ToSearch();
                     }
-                    ToSearch();
-                }
-                break;
-            case R.id.iv_luopan:
-                resetPosition();
-                break;
-            case R.id.iv_area_back:
-                setAreaBack();
-                break;
-            case R.id.iv_data_back:
-                setDataBack();
-                break;
-            case R.id.btn_util:
-                setUtilBack();
-                break;
+                    break;
+                case R.id.ll_compass:
+                    resetPosition();
+                    break;
+                case R.id.iv_area_back:
+                    setAreaBack();
+                    break;
+                case R.id.iv_data_back:
+                    setDataBack();
+                    break;
+                case R.id.btn_util:
+                    setUtilBack();
+                    break;
+            }
         }
-    }
+    };
 
     private void setNarrow() {
         Camera currentViewpointCamera = sceneView.getCurrentViewpointCamera();
@@ -2830,12 +2743,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUtilBack() {
         if (!llUtilState) {
-            btnUtil.setText("关闭工具");
+            btnUtil.setSelected(true);
             llUtil.setVisibility(View.VISIBLE);
             llUtilState = true;
         } else {
-            btnUtil.setText("打开工具");
-            btnUtilDetail.setVisibility(View.GONE);
+            btnUtil.setSelected(false);
             clear();
             tvMeasureResult.setText("");
             llUtil.setVisibility(View.INVISIBLE);
@@ -3044,6 +2956,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addWeather() {
+        weatherGraphics.clear();
         final List<DisasterPoint> disasterPoints = new ArrayList<>();
         DisasterPoint wandong = new DisasterPoint();
         wandong.setDis_lon("106.91979545");
@@ -3261,8 +3174,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        lp.rightMargin = 100;
-        lp.bottomMargin = 30;
+        lp.rightMargin = 120;
+        lp.bottomMargin = 50;
         if (view == null) {
             view = inflater.inflate(resource, null);
             view.setLayoutParams(lp);

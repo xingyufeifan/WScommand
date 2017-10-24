@@ -18,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/shape_ll_background1">
+            android:background="@drawable/shape_ll_background">
 
 
             <TextView
@@ -27,13 +27,14 @@
                 android:gravity="left|center"
                 android:paddingLeft="30dp"
                 android:text="隐患点图例"
-                android:textColor="@color/color_title"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
         </RelativeLayout>
 
 
         <ScrollView
+            android:background="@color/content_bg_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nandi.wscommand.R;
@@ -69,11 +70,17 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             view= LayoutInflater.from(context).inflate(R.layout.item_parent_view,null);
             holder=new ParentHolder();
             holder.tvName= (TextView) view.findViewById(R.id.tv_name);
+            holder.ivImage= (ImageView) view.findViewById(R.id.iv_image);
             view.setTag(holder);
         }else {
             holder= (ParentHolder) view.getTag();
         }
         holder.tvName.setText(parent.get(i));
+        if (b){
+            holder.ivImage.setImageResource(R.drawable.image_down);
+        }else {
+            holder.ivImage.setImageResource(R.drawable.image_up);
+        }
         return view;
     }
 
@@ -98,6 +105,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     }
     private class ParentHolder{
         TextView tvName;
+        ImageView ivImage;
     }
     private class ChildHolder{
         TextView tvName;

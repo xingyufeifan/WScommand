@@ -2,16 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/content_bg_color"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="center_vertical"
+        />
     <TextView
-        android:paddingLeft="40dp"
         android:id="@+id/tv_name"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="行政区划图"
-        android:background="@color/content_bg_color"
-        android:alpha="0.7"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
+    </LinearLayout>
 </LinearLayout>
