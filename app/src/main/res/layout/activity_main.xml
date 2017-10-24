@@ -75,12 +75,11 @@
         android:id="@+id/btn_util_detail"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_above="@+id/ll_data"
-        android:layout_marginBottom="18dp"
-        android:layout_toLeftOf="@+id/btn_util"
-        android:layout_toStartOf="@+id/btn_util"
+        android:layout_toLeftOf="@+id/ll_location"
+        android:layout_alignTop="@+id/ll_location"
         android:text="显示详情"
-        android:visibility="gone" />
+        android:layout_marginRight="10dp"
+        android:visibility="invisible" />
     <Button
         android:id="@+id/btn_util"
         android:layout_width="100dp"
@@ -195,10 +194,10 @@
         android:id="@+id/tv_measure_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_margin="100dp"
-        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@+id/btn_util"
+        android:layout_alignTop="@+id/btn_util"
         android:textColor="#ffffff"
+        android:layout_marginRight="10dp"
         android:textSize="20sp" />
 
 
