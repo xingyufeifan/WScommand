@@ -1165,8 +1165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void itemClick(int i, int i1) {// TODO: 2017/10/24
         if (i == 0) {
             if (i1 == 0) {
-                layers.add(xzFeatureLayer);
-                changeRender();
+                if (!layers.contains(xzFeatureLayer)) {
+                    layers.add(xzFeatureLayer);
+                    changeRender();
+                }
                 if (weathersGraphics.size() > 0) {
                     weathersGraphics.clear();
                 }
@@ -1174,19 +1176,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (layers.contains(xzFeatureLayer)) {
                     layers.remove(xzFeatureLayer);
                 }
-                updateWeather(weatherGraphics);
+                if (weathersGraphics.size() == 0) {
+                    updateWeather(weatherGraphics);
+                }
             }
         } else if (i == 1) {
             if (i1 == 0) {
                 if (layers.contains(dengZXLayer)) {
                     layers.remove(dengZXLayer);
                 }
-                layers.add(ssYLLayer);
+                if (!layers.contains(ssYLLayer)) {
+
+                    layers.add(ssYLLayer);
+                }
             } else if (i1 == 1) {
                 if (layers.contains(ssYLLayer)) {
                     layers.remove(ssYLLayer);
                 }
-                layers.add(dengZXLayer);
+                if (!layers.contains(dengZXLayer)) {
+                    layers.add(dengZXLayer);
+                }
             }
         } else if (i == 2) {
             if (i1 == 0) {
@@ -1483,9 +1492,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView tvCheckToDetail = (TextView) view.findViewById(R.id.tv_check_to_detail);
         final RadioGroup rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
-      final RadioButton rbtnCheck_1 = (RadioButton) view.findViewById(R.id.rbtn_check_1);
-      final RadioButton rbtnCheck_2 = (RadioButton) view.findViewById(R.id.rbtn_check_2);
-      final RadioButton rbtnCheck_3 = (RadioButton) view.findViewById(R.id.rbtn_check_3);
+        final RadioButton rbtnCheck_1 = (RadioButton) view.findViewById(R.id.rbtn_check_1);
+        final RadioButton rbtnCheck_2 = (RadioButton) view.findViewById(R.id.rbtn_check_2);
+        final RadioButton rbtnCheck_3 = (RadioButton) view.findViewById(R.id.rbtn_check_3);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -2099,6 +2108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
     }
+
     /**
      * 延时显示WaitingDialog
      *

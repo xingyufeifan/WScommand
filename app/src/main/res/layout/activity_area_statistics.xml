@@ -7,10 +7,8 @@
     >
 
     <LinearLayout
-        android:alpha="0.8"
         android:orientation="vertical"
         android:layout_width="300dp"
-        android:background="@drawable/shape_ll_background"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -18,7 +16,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="@drawable/shape_ll_background1"
+            android:alpha="0.8"
+            android:background="@drawable/shape_ll_background"
             android:layout_height="50dp">
 
             <TextView
@@ -28,7 +27,7 @@
                 android:paddingLeft="30dp"
                 android:gravity="left|center"
                 android:textSize="20sp"
-                android:textColor="@color/color_title"
+                android:textColor="@color/title_text_color"
                 />
 
             <ImageView
@@ -43,6 +42,8 @@
 
 
         <LinearLayout
+            android:background="@color/content_bg_color"
+            android:alpha="0.7"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
