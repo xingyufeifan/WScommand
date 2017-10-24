@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#bb000000"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <!-- 人员定位及人员轨迹 -->
     <RadioGroup
@@ -50,6 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorlocation"
             android:orientation="horizontal">
 
             <RadioButton
@@ -57,11 +58,10 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@color/colorlocation"
                 android:button="@null"
                 android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="群测群防人员"
                 android:textColor="@color/radiobtn_textcolor"
                 android:textSize="20sp" />
@@ -69,18 +69,17 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorgray"/>
+                android:background="@color/colorgray" />
 
             <RadioButton
                 android:id="@+id/rb_zsdz_location"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@color/colorlocation"
+                android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="驻守地质队员"
                 android:textColor="@color/radiobtn_textcolor"
                 android:textSize="20sp" />
@@ -88,18 +87,17 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorgray"/>
+                android:background="@color/colorgray" />
 
             <RadioButton
                 android:id="@+id/rb_pqfz_location"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@color/colorlocation"
                 android:button="@null"
                 android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="片区负责人员"
                 android:textColor="@color/radiobtn_textcolor"
                 android:textSize="20sp" />
@@ -107,18 +105,17 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorgray"/>
+                android:background="@color/colorgray" />
 
             <RadioButton
                 android:id="@+id/rb_zhzx_location"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@color/colorlocation"
                 android:button="@null"
                 android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="指挥中心人员"
                 android:textColor="@color/radiobtn_textcolor"
                 android:textSize="20sp" />
@@ -127,47 +124,49 @@
         <!-- 人员轨迹查询时间 -->
         <LinearLayout
             android:id="@+id/ll_check_time"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@color/colorlocation"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="开始时间:"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/tv_start_time"
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/textview_background"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="结束时间:"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/tv_end_time"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/textview_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间段"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:hint="选择时间"
+                android:background="@drawable/textview_background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="至"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:hint="选择时间"
+                android:background="@drawable/textview_background" />
+
         </LinearLayout>
 
         <!-- 下拉框及搜索按钮 -->
@@ -177,15 +176,19 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/sp_person_list"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginRight="20dp"
-                android:background="@color/white">
+                android:orientation="horizontal"
+                android:background="@drawable/shape_search_spinner">
 
-            </Spinner>
+                <Spinner
+                    android:id="@+id/sp_person_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_location_search"
