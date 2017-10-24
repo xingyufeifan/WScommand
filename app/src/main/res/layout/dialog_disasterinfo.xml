@@ -18,7 +18,7 @@
             <RadioButton
                 android:checked="true"
                 android:id="@+id/rbtn_base_info"
-                android:textColor="@color/white"
+                android:textColor="@color/radiobtn_textcolor"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_width="0dp"
@@ -31,7 +31,7 @@
             <RadioButton
                 android:id="@+id/rbtn_check_detail"
                 android:textSize="20sp"
-                android:textColor="@color/title_text_color"
+                android:textColor="@color/radiobtn_textcolor"
                 android:gravity="center"
                 android:text="查看详情"
                 android:layout_margin="10dp"

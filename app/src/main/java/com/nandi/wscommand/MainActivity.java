@@ -1492,9 +1492,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView tvCheckToDetail = (TextView) view.findViewById(R.id.tv_check_to_detail);
         final RadioGroup rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
-        final RadioButton rbtnCheck_1 = (RadioButton) view.findViewById(R.id.rbtn_check_1);
-        final RadioButton rbtnCheck_2 = (RadioButton) view.findViewById(R.id.rbtn_check_2);
-        final RadioButton rbtnCheck_3 = (RadioButton) view.findViewById(R.id.rbtn_check_3);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -1503,25 +1500,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         llSheBeiInfo1.setVisibility(View.VISIBLE);
                         llSheBeiInfo2.setVisibility(View.GONE);
                         llSheBeiInfo3.setVisibility(View.GONE);
-                        rbtnCheck_1.setTextColor(Color.WHITE);
-                        rbtnCheck_2.setTextColor(getResources().getColor(R.color.title_text_color));
-                        rbtnCheck_3.setTextColor(getResources().getColor(R.color.title_text_color));
                         break;
                     case R.id.rbtn_check_2:
                         llSheBeiInfo1.setVisibility(View.GONE);
                         llSheBeiInfo2.setVisibility(View.VISIBLE);
                         llSheBeiInfo3.setVisibility(View.GONE);
-                        rbtnCheck_2.setTextColor(Color.WHITE);
-                        rbtnCheck_1.setTextColor(getResources().getColor(R.color.title_text_color));
-                        rbtnCheck_3.setTextColor(getResources().getColor(R.color.title_text_color));
                         break;
                     case R.id.rbtn_check_3:
                         llSheBeiInfo1.setVisibility(View.GONE);
                         llSheBeiInfo2.setVisibility(View.GONE);
                         llSheBeiInfo3.setVisibility(View.VISIBLE);
-                        rbtnCheck_3.setTextColor(Color.WHITE);
-                        rbtnCheck_2.setTextColor(getResources().getColor(R.color.title_text_color));
-                        rbtnCheck_1.setTextColor(getResources().getColor(R.color.title_text_color));
                         break;
                 }
             }
@@ -1821,8 +1809,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final LinearLayout llBaseInfo = (LinearLayout) view.findViewById(R.id.ll_base_info);
         final View detailInfo = view.findViewById(R.id.detail_info);
         rg = (RadioGroup) view.findViewById(R.id.rg_disaster_info);
-        final RadioButton rbtnBaseInfo = (RadioButton) view.findViewById(R.id.rbtn_base_info);
-        final RadioButton rbtnChecDetail = (RadioButton) view.findViewById(R.id.rbtn_check_detail);
         final List<String> mList = new ArrayList<>();
         mList.add(R.mipmap.t5001101000840101_1 + "");
         mList.add(R.mipmap.t5001101000840101_2 + "");
@@ -1834,14 +1820,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.rbtn_base_info:
                         detailInfo.setVisibility(View.GONE);
                         llBaseInfo.setVisibility(View.VISIBLE);
-                        rbtnBaseInfo.setTextColor(Color.WHITE);
-                        rbtnChecDetail.setTextColor(getResources().getColor(R.color.title_text_color));
                         break;
                     case R.id.rbtn_check_detail:
                         llBaseInfo.setVisibility(View.GONE);
                         detailInfo.setVisibility(View.VISIBLE);
-                        rbtnBaseInfo.setTextColor(getResources().getColor(R.color.title_text_color));
-                        rbtnChecDetail.setTextColor(Color.WHITE);
                         //setOkhttpDetails(id+"",getResources().getString(R.string.four_person_info),1);
                         break;
                 }
