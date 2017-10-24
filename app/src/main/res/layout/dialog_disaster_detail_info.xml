@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
-        <com.nandi.disastermanager.ui.MyRadioGroup
+        <com.nandi.wscommand.ui.MyRadioGroup
             android:id="@+id/myrg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -291,7 +291,7 @@
 
             </LinearLayout>
 
-        </com.nandi.disastermanager.ui.MyRadioGroup>
+        </com.nandi.wscommand.ui.MyRadioGroup>
 
     </RelativeLayout>
 

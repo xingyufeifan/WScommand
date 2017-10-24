@@ -4,7 +4,7 @@
     android:id="@+id/rl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nandi.disastermanager.MainActivity">
+    tools:context="com.nandi.wscommand.MainActivity">
 
 
     <com.esri.arcgisruntime.mapping.view.SceneView
@@ -28,11 +28,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_area"
-        android:layout_marginTop="10dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        <include layout="@layout/activity_data_manage" />
+        <include layout="@layout/layout_manager" />
     </LinearLayout>
-
 
     <ImageView
         android:id="@+id/iv_location"
@@ -148,7 +148,7 @@
         android:textSize="20sp" />
 
 
-    <com.nandi.disastermanager.ui.CircleBar
+    <com.nandi.wscommand.ui.CircleBar
         android:id="@+id/pie_chart"
         android:layout_width="200dp"
         android:layout_height="200dp"

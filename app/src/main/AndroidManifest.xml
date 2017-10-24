@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nandi.disastermanager">
+    package="com.nandi.wscommand">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -8,13 +8,13 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <application
-        android:name=".MyApplication"
+        android:name="com.nandi.wscommand.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="com.nandi.wscommand.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             >
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".videocall.helloanychat.VideoActivity"
+            android:name="com.nandi.wscommand.videocall.helloanychat.VideoActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|navigation" >
             <intent-filter>
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".videocall.helloanychat.VideoCallActivity"
+            android:name="com.nandi.wscommand.videocall.helloanychat.VideoCallActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|navigation" >
             <intent-filter>
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".videocall.helloanychat.VideoConfig"
+            android:name="com.nandi.wscommand.videocall.helloanychat.VideoConfig"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|navigation">
             <intent-filter>
