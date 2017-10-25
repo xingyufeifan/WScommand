@@ -2878,10 +2878,8 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onItemClick(View view) {
                                                 int position = rc.getChildAdapterPosition(view);
-                                                if (position > 0) {
-                                                    searchPlaceBean = mSearchPlace.getData().get(position - 1);
-                                                    setSearchPlaceOverlay(searchPlaceBean);
-                                                }
+                                                searchPlaceBean = mSearchPlace.getData().get(position);
+                                                setSearchPlaceOverlay(searchPlaceBean);
                                             }
                                         });
                                         break;
@@ -2893,10 +2891,8 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onItemClick(View view) {
                                                 int position = rc.getChildAdapterPosition(view);
-                                                if (position > 0) {
-                                                    searchPersonBean = mSearchPerson.getData().get(position - 1);
-                                                    setSearchPersonOverlay(searchPersonBean);
-                                                }
+                                                searchPersonBean = mSearchPerson.getData().get(position);
+                                                setSearchPersonOverlay(searchPersonBean);
                                             }
                                         });
                                         break;
