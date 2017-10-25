@@ -26,6 +26,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -1216,6 +1217,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showPersonLocation(int zIndex, String type) {
+        Log.d("cp",zIndex+"/"+type);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_location_person_info, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_name);
         TextView tvMobile = (TextView) view.findViewById(R.id.tv_mobile);
@@ -1231,6 +1233,7 @@ public class MainActivity extends AppCompatActivity {
         }
         for (final personLocationInfo.DataBean dataBean : personLocationData) {
             if (zIndex == dataBean.getId()) {
+                Log.d("cp","--------------");
                 tvName.setText(dataBean.getName());
                 tvMobile.setText(dataBean.getTel());
                 tvLon.setText(dataBean.getLon() + "");
@@ -1247,6 +1250,7 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(context)
                         .setView(view)
                         .show();
+                return;
             }
 
         }
